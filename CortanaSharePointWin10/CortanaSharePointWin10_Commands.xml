@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.0">
+  <CommandSet xml:lang="fr-fr">
+    <!-- The CommandPrefix provides an alternative to your full app name for invocation -->
+    <CommandPrefix>Cellenza</CommandPrefix>
+    <!-- The CommandSet Example appears in the global help alongside your app name -->
+    <Example> affiche les documents de site</Example>
+
+    <Command Name="cortanaitems">
+      <Example>Affiche moi les éléments du site</Example>
+      <ListenFor>{show} [moi] {items} du site</ListenFor>
+      <Feedback>Affichage des éléments du site...</Feedback>
+      <Navigate  Target="/Views/CortanaListItems.xaml"  />
+    </Command>
+
+    <Command Name="cortanaappointments">
+      <Example>Montre moi le calendrier du site</Example>
+      <ListenFor>{show} [moi] {events} du site</ListenFor>
+      <Feedback>Affichage des évènements du site...</Feedback>
+      <Navigate  Target="/Views/CortanaListItems.xaml"  />
+    </Command>
+
+    <Command Name="cortanasearch">
+      <Example>Trouve dans le site</Example>
+      <ListenFor>{show} dans le site</ListenFor>
+      <Feedback>Affichage des résultats du site...</Feedback>
+      <Navigate  Target="/Views/CortanaSearch.xaml"  />
+    </Command>
+
+    <PhraseList Label="show">
+      <Item>affiche</Item>
+      <Item>montre</Item>
+      <Item>cherche</Item>
+      <Item>recherche</Item>
+      <Item>trouve</Item>
+    </PhraseList>
+
+    <PhraseList Label="items">
+      <Item>documents</Item>
+      <Item>éléments</Item>
+    </PhraseList>
+
+    <PhraseList Label="events">
+      <Item>calendrier</Item>
+      <Item>évènements</Item>
+    </PhraseList>
+
+  </CommandSet>
+</VoiceCommands>
