@@ -7,25 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <StackPanel Margin="5,0">
-        <Image Source="/Assets/TitleLogo.png"></Image>
-        <TextBlock Name="txtCortanaMessages"></TextBlock>
-        <Button HorizontalAlignment="Stretch" Name="btnSearch" Click="btnSearch_Click">Search</Button>
-        <ListBox Background="Black" Name="CortanaSearchListView" ItemsSource="{Binding CortanaResults}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Visibility="Collapsed" Foreground="White" Text="{Binding Id}"></TextBlock>
-                        <TextBlock Foreground="White" Text="{Binding Title}"></TextBlock>
-                        <TextBlock Foreground="White" Text="{Binding Url}"></TextBlock>
-                        <TextBlock Foreground="White" Text="{Binding LastModifiedDate}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
-    
+    <ScrollViewer >
+        <StackPanel VerticalAlignment="Top">
+            <Image Source="/Assets/TitleLogo.png" MaxWidth="360"></Image>
+            <TextBlock Name="txtCortanaMessages"></TextBlock>
+            <Button HorizontalAlignment="Stretch" Name="btnSearch" Click="btnSearch_Click">Search</Button>
+            <ListBox Background="Black" Name="CortanaSearchListView" ItemsSource="{Binding CortanaResults}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Visibility="Collapsed" Foreground="White" Text="{Binding Id}"></TextBlock>
+                            <TextBlock Foreground="White" Text="{Binding Title}"></TextBlock>
+                            <TextBlock Foreground="White" Text="{Binding Url}"></TextBlock>
+                            <TextBlock Foreground="White" Text="{Binding LastModifiedDate}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </ScrollViewer >
     <Page.BottomAppBar>
         <CommandBar IsSticky="True" x:Name="appBar">
             <CommandBar.PrimaryCommands>

@@ -23,7 +23,7 @@ namespace CortanaSharePointWin10.Services
                 CortanaAppointment ci = new CortanaAppointment();
                 ci.Id = "1";
                 ci.Subject = "Titre de l'event";
-                ci.StartDate = DateTime.Now.AddDays(-1).AddHours(10);
+                ci.StartDate = DateTime.Now.AddDays(1).AddHours(10);
                 cortanaAppointments.Add(ci);
                 LoadDataCompleted(cortanaAppointments); // Fire event DataLoadCompleted
 

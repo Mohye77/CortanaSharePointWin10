@@ -2,12 +2,12 @@
 using CortanaSharePointWin10.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +30,7 @@ namespace CortanaSharePointWin10.Views
 
         public CortanaCalendar()
         {
+            this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -43,15 +44,7 @@ namespace CortanaSharePointWin10.Views
         {
             CortanaCalendarViewModel viewModel = DataContext as CortanaCalendarViewModel;
             viewModel.LoadAppointments(SettingsValues.SiteUrl, SettingsValues.CalendarTitle, SettingsValues.LoginName, SettingsValues.Password);
-
-            viewModel.PropertyChanged += ViewModelPropertyChanged;
         }
-
-        void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            this.InitializeComponent();
-        }
-
 
         #region navigation
         /// <summary>
@@ -112,29 +105,58 @@ namespace CortanaSharePointWin10.Views
         }
 
         #endregion
-
-        /// <summary>
-        /// Gets the view model for this <see cref="Page"/>.
-        /// This can be changed to a strongly typed view model.
-        /// </summary>
-        public ObservableDictionary DefaultViewModel
-        {
-            get { return this.defaultViewModel; }
-        }
-
-        private void RadCal_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            DateTime selectedDate = (sender as Telerik.UI.Xaml.Controls.Input.RadCalendar).CurrentDate;
-
-            appointmentsList.ItemsSource = (DataContext as CortanaCalendarViewModel).CortanaAppointments.Where(app => app.StartDate.Date == selectedDate.Date);
-        }
-
-
         #region AppBar events
         private void AppBarBtnHome_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage), null);
         }
         #endregion
+
+        private void CalendarView_SelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
+        {
+            IList<DateTimeOffset> selectedDates = (sender as CalendarView).SelectedDates;
+            if (selectedDates != null && selectedDates.Count > 0)
+            {
+                appointmentsList.ItemsSource = (DataContext as CortanaCalendarViewModel).CortanaAppointments.Where(app => app.StartDate.Date == selectedDates[0].Date);
+            }
+        }
+
+        private void Calendar_CalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
+        {
+            // Render basic day items.
+            if (args.Phase == 0)
+            {
+                // Register callback for next phase.
+                args.RegisterUpdateCallback(Calendar_CalendarViewDayItemChanging);
+            }
+            // Set blackout dates.
+            else if (args.Phase == 1)
+            {
+                // Register callback for next phase.
+                args.RegisterUpdateCallback(Calendar_CalendarViewDayItemChanging);
+            }
+            // Set density bars.
+            else if (args.Phase == 2)
+            {
+                // Avoid unnecessary processing.
+                // You don't need to set bars on past dates
+                if (args.Item.Date >= DateTimeOffset.Now)
+                {
+                    var spEvents = (DataContext as CortanaCalendarViewModel).CortanaAppointments.Where(app => app.StartDate.Date == args.Item.Date.Date);
+
+                    List<Color> densityColors = new List<Color>();
+                    // Set a density bar color for each of the days bookings.
+                    // It's assumed that there can't be more than 10 bookings in a day. Otherwise,
+                    // further processing is needed to fit within the max of 10 density bars.
+                    int cpt = 0;
+                    foreach (var spEvent in spEvents.TakeWhile(a => cpt < 10))
+                    {
+                        cpt++;
+                        densityColors.Add(Colors.Cyan);
+                    }
+                    args.Item.SetDensityColors(densityColors);
+                }
+            }
+        }
     }
 }

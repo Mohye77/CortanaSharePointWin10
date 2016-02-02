@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.Core;
 
 namespace CortanaSharePointWin10.Models
 {
-    public class CortanaAppointment : IAppointment
+    public class CortanaAppointment
     {
         public string Id { get; set; }
         public DateTime EndDate { get; set; }
