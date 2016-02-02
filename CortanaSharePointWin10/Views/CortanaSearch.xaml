@@ -12,8 +12,8 @@
         <Image Source="/Assets/TitleLogo.png"></Image>
         <TextBlock Name="txtCortanaMessages"></TextBlock>
         <Button HorizontalAlignment="Stretch" Name="btnSearch" Click="btnSearch_Click">Search</Button>
-        <ListView Background="Black" Name="CortanaSearchListView" ItemsSource="{Binding CortanaResults}">
-            <ListView.ItemTemplate>
+        <ListBox Background="Black" Name="CortanaSearchListView" ItemsSource="{Binding CortanaResults}">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Visibility="Collapsed" Foreground="White" Text="{Binding Id}"></TextBlock>
@@ -22,8 +22,18 @@
                         <TextBlock Foreground="White" Text="{Binding LastModifiedDate}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
-
+    
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True" x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Name="AppBarBtnHome" Icon="Home" IsCompact="False" Label="Home" Click="AppBarBtnHome_Click" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <!--<AppBarButton Label="Example"/>-->
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

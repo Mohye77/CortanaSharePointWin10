@@ -19,27 +19,12 @@ namespace CortanaSharePointWin10.Services
 
             try
             {
-                //using (ClientContext context = new ClientContext(siteUrl))
-                //{
-                //    SharePointOnlineCredentials credentials = new SharePointOnlineCredentials(login, mdp);
-                //    context.Credentials = credentials;
-                //    Web web = context.Web;
-                //    ListItemCollection calendarAppointmentsCollection = web.Lists.GetByTitle(calendarName).GetItems(CamlQuery.CreateAllItemsQuery());
-                //    context.Load(calendarAppointmentsCollection);
 
-                //    await context.ExecuteQueryAsync().ContinueWith((t) =>
-                //    {
-                //        foreach (var item in calendarAppointmentsCollection)
-                //        {
-                //            CortanaAppointment ci = new CortanaAppointment();
-                //            ci.Id = item.FieldValues["ID"] != null ? item.FieldValues["ID"].ToString() : string.Empty;
-                //            ci.Subject = item.FieldValues["Title"] != null ? item.FieldValues["Title"].ToString() : string.Empty;
-                //            ci.StartDate = item.FieldValues["EventDate"] != null ? DateTime.Parse(item.FieldValues["EventDate"].ToString()) : new DateTime();
-                //            cortanaAppointments.Add(ci);
-                //        }
-                //    });
-                //}
-
+                CortanaAppointment ci = new CortanaAppointment();
+                ci.Id = "1";
+                ci.Subject = "Titre de l'event";
+                ci.StartDate = DateTime.Now.AddDays(-1).AddHours(10);
+                cortanaAppointments.Add(ci);
                 LoadDataCompleted(cortanaAppointments); // Fire event DataLoadCompleted
 
             }

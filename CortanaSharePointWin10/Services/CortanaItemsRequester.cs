@@ -19,28 +19,12 @@ namespace CortanaSharePointWin10.Services
 
             try
             {
-                //using (ClientContext context = new ClientContext(siteUrl))
-                //{
-                //    SharePointOnlineCredentials credentials = new SharePointOnlineCredentials(login, mdp);
-                //    context.Credentials = credentials;
-                //    Web web = context.Web;
-                //    ListItemCollection listItemCollection = web.Lists.GetByTitle(listName).GetItems(CamlQuery.CreateAllItemsQuery());
-                //    context.Load(listItemCollection);
-
-                //    await context.ExecuteQueryAsync().ContinueWith((t) =>
-                //    {
-                //        foreach (var item in listItemCollection)
-                //        {
-                //            CortanaItem ci = new CortanaItem();
-                //            ci.Id = item.FieldValues["ID"] != null ? item.FieldValues["ID"].ToString() : string.Empty;
-                //            ci.Title = item.FieldValues["Title"] != null ? item.FieldValues["Title"].ToString() : string.Empty;
-                //            ci.LastModifiedDate = item.FieldValues["Modified"] != null ? item.FieldValues["Modified"].ToString() : string.Empty;
-                //            ci.Url = item.FieldValues["FileRef"] != null ? item.FieldValues["FileRef"].ToString() : string.Empty;
-                //            cortanaItems.Add(ci);
-                //        }
-                //    });
-                //}
-
+                CortanaItem ci = new CortanaItem();
+                ci.Id = "1";
+                ci.Title = "Titre élément";
+                ci.LastModifiedDate = DateTime.Now.ToString();
+                ci.Url = "http://www.google.fr";
+                cortanaItems.Add(ci);
                 LoadDataCompleted(cortanaItems); // Fire event DataLoadCompleted
 
             }

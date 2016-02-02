@@ -30,7 +30,6 @@ namespace CortanaSharePointWin10.Views
 
         public CortanaCalendar()
         {
-
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -46,13 +45,13 @@ namespace CortanaSharePointWin10.Views
             viewModel.LoadAppointments(SettingsValues.SiteUrl, SettingsValues.CalendarTitle, SettingsValues.LoginName, SettingsValues.Password);
 
             viewModel.PropertyChanged += ViewModelPropertyChanged;
-
         }
 
         void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             this.InitializeComponent();
         }
+
 
         #region navigation
         /// <summary>
@@ -129,5 +128,13 @@ namespace CortanaSharePointWin10.Views
 
             appointmentsList.ItemsSource = (DataContext as CortanaCalendarViewModel).CortanaAppointments.Where(app => app.StartDate.Date == selectedDate.Date);
         }
+
+
+        #region AppBar events
+        private void AppBarBtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), null);
+        }
+        #endregion
     }
 }

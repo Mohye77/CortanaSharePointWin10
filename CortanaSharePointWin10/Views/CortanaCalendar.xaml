@@ -26,8 +26,8 @@
     <StackPanel Margin="5,0">
         <Image Source="/Assets/TitleLogo.png"/>
         <Telerik:RadCalendar x:Name="RadCal" Tapped="RadCal_Tapped" AppointmentSource="{Binding CortanaAppointments}" CellStyleSelector="{StaticResource customStyleSelector}" />
-        <ListView x:Name="appointmentsList" Background="Black">
-            <ListView.ItemTemplate>
+        <ListBox x:Name="appointmentsList" Background="Black">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Visibility="Collapsed" Foreground="White" Text="{Binding Id}"></TextBlock>
@@ -35,7 +35,18 @@
                         <TextBlock Foreground="White" Text="{Binding StartDate}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
+
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True" x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Name="AppBarBtnHome" Icon="Home" IsCompact="False" Label="Home" Click="AppBarBtnHome_Click" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <!--<AppBarButton Label="Example"/>-->
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

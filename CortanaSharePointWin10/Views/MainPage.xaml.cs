@@ -27,5 +27,20 @@ namespace CortanaSharePointWin10.Views
         {
             this.InitializeComponent();
         }
+
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CortanaCalendar), null);
+        }
+
+        private void btnElements_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CortanaListItems), null);
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CortanaSearch), null);
+        }
     }
 }

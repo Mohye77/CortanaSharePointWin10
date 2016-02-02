@@ -115,5 +115,13 @@ namespace CortanaSharePointWin10.Views
         }
 
         #endregion
+
+
+        #region AppBar events
+        private void AppBarBtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), null);
+        }
+        #endregion
     }
 }

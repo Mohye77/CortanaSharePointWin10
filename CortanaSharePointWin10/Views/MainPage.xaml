@@ -9,9 +9,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Margin="5,0">
-        <Image Source="/Assets/TitleLogo.png"></Image>
-        <TextBlock FontSize="34"  Text="Cortana &amp; SharePoint"></TextBlock>
-        <MediaElement IsLooping="True" Source="/Assets/Cortana_Animation.mp4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoPlay="True" IsMuted="True"/>
+        <ScrollViewer>
+            <StackPanel>
+                <Image Source="/Assets/TitleLogo.png"></Image>
+                <TextBlock FontSize="34"  Text="Cortana &amp; SharePoint"></TextBlock>
+                <MediaElement IsLooping="True" Source="/Assets/Cortana_Animation.mp4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoPlay="True" IsMuted="True"/>
+                <Button Name="btnCalendar" Click="btnCalendar_Click">Calendar</Button>
+                <Button Name="btnElements" Click="btnElements_Click">Elements</Button>
+                <Button Name="btnSearch" Click="btnSearch_Click">Search</Button>
+            </StackPanel>
+        </ScrollViewer>
     </StackPanel>
-    
+
 </Page>

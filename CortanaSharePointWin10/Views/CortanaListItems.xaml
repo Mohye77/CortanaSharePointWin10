@@ -10,8 +10,8 @@
     
     <StackPanel Margin="5,0">
         <Image Source="/Assets/TitleLogo.png"></Image>
-        <ListView  Background="Black" Name="CortanaItemsListView" ItemsSource="{Binding CortanaItems}" >
-            <ListView.ItemTemplate>
+        <ListBox  Background="Black" Name="CortanaItemsListView" ItemsSource="{Binding CortanaItems}" >
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Visibility="Collapsed" Foreground="White" Text="{Binding Id}"></TextBlock>
@@ -20,8 +20,19 @@
                         <TextBlock Foreground="White" Text="{Binding LastModifiedDate}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
+    
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True" x:Name="appBar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Name="AppBarBtnHome" Icon="Home" IsCompact="False" Label="Home" Click="AppBarBtnHome_Click" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <!--<AppBarButton Label="Example"/>-->
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
 </Page>
